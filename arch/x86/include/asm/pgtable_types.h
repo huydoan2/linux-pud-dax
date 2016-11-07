@@ -419,6 +419,7 @@ static inline pgprot_t pgprot_large_2_4k(pgprot_t pgprot)
 	return new;
 }
 
+/// Should there be some thing for 2MB_1GB?
 
 typedef struct page *pgtable_t;
 

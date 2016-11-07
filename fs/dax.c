@@ -771,15 +771,6 @@ int dax_writeback_mapping_range(struct address_space *mapping,
 
 	start_index = wbc->range_start >> PAGE_SHIFT;
 	end_index = wbc->range_end >> PAGE_SHIFT;
-	pmd_index = DAX_PMD_INDEX(start_index);	
-
-	rcu_read_lock();
-	entry = radix_tree_lookup(&mapping->page_tree, pmd_index);
-	rcu_read_unlock();
-
-	/* see if the start of our range is covered by a PMD entry */
-	if (entry && RADIX_DAX_TYPE(entry) == RADIX_DAX_PMD)
-		start_index = pmd_index;
 
 	/// MODIFYING
 	pud_index = DAX_PUD_INDEX(start_index);
@@ -791,6 +782,18 @@ int dax_writeback_mapping_range(struct address_space *mapping,
 	if (entry && RADIX_DAX_TYPE(entry) == RADIX_DAX_PUD)
 		start_index = pud_index;
 	///
+
+	pmd_index = DAX_PMD_INDEX(start_index);	
+
+	rcu_read_lock();
+	entry = radix_tree_lookup(&mapping->page_tree, pmd_index);
+	rcu_read_unlock();
+
+	/* see if the start of our range is covered by a PMD entry */
+	if (entry && RADIX_DAX_TYPE(entry) == RADIX_DAX_PMD)
+		start_index = pmd_index;
+
+
 
 	tag_pages_for_writeback(mapping, start_index, end_index);
 

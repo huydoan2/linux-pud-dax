@@ -1671,6 +1671,7 @@ xfs_filemap_pfn_mkwrite(
 static const struct vm_operations_struct xfs_file_vm_ops = {
 	.fault		= xfs_filemap_fault,
 	.pmd_fault	= xfs_filemap_pmd_fault,
+	.pud_fault	= xfs_filemap_pud_fault,
 	.map_pages	= filemap_map_pages,
 	.page_mkwrite	= xfs_filemap_page_mkwrite,
 	.pfn_mkwrite	= xfs_filemap_pfn_mkwrite,

@@ -455,29 +455,15 @@ static inline pud_t pud_mknotpresent(pud_t pud)
 }
 
 #ifdef CONFIG_HAVE_ARCH_SOFT_DIRTY
-static inline int pte_soft_dirty(pte_t pte)
-{
-	return pte_flags(pte) & _PAGE_SOFT_DIRTY;
-}
 
 static inline int pud_soft_dirty(pud_t pud)
 {
 	return pud_flags(pud) & _PAGE_SOFT_DIRTY;
 }
 
-static inline pte_t pte_mksoft_dirty(pte_t pte)
-{
-	return pte_set_flags(pte, _PAGE_SOFT_DIRTY);
-}
-
 static inline pud_t pud_mksoft_dirty(pud_t pud)
 {
 	return pud_set_flags(pud, _PAGE_SOFT_DIRTY);
-}
-
-static inline pte_t pte_clear_soft_dirty(pte_t pte)
-{
-	return pte_clear_flags(pte, _PAGE_SOFT_DIRTY);
 }
 
 static inline pud_t pud_clear_soft_dirty(pud_t pud)
