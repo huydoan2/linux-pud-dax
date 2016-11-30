@@ -1,0 +1,5 @@
+kernel/arch/x86/crypto/crc32c-intel.ko
+kernel/arch/x86/events/intel/intel-rapl-perf.ko
+kernel/arch/x86/events/intel/intel-uncore.ko
+kernel/arch/x86/events/intel/intel-cstate.ko
+kernel/arch/x86/platform/intel/iosf_mbi.ko
